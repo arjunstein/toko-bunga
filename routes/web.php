@@ -14,11 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('dashboard');
 });
 
-Route::get('dashboard', [App\Http\Controllers\admin\DashboardController::class, 'index']);
+Route::group(['middleware'=>['auth']], function(){
+    Route::get('dashboard', [App\Http\Controllers\admin\DashboardController::class, 'index']);
+
+});
 
 Auth::routes();
+
+Route::get('logout', function (){
+    \Auth::logout();
+    return redirect('login');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
