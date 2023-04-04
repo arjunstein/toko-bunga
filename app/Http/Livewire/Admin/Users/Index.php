@@ -10,7 +10,8 @@ class Index extends Component
     public function render()
     {
         $data = [
-            'users' => User::orderBy('id','asc')->get()
+            'users' => User::orderBy('id','asc')->get(),
+            'title' => 'Kelola users',
         ];
         return view('livewire.admin.users.index', $data);
     }
