@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\UserController;
+use App\Http\Livewire\Admin\Users\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +20,13 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware'=>['auth']], function(){
+
     Route::get('dashboard', [App\Http\Controllers\admin\DashboardController::class, 'index']);
 
+    // Kelola user
+    Route::resource('/admin/users', UserController::class);
+
+    // Route::get('admin/users', Index::class); => livewire route
 });
 
 Auth::routes();

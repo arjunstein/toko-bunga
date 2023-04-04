@@ -58,35 +58,8 @@ License: For each use you must have a valid license purchased only from above li
 							<!--end::Container-->
 						</div>
 						<!--end::Toolbar-->
-						<!--begin::Post-->
-						<div class="post d-flex flex-column-fluid" id="kt_post">
-							<!--begin::Container-->
-							<div id="kt_content_container" class="container-xxl">
-								<!--begin::Row-->
-								<div class="row g-5 g-xl-10 mb-xl-10">
-									<div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-									</div>
-									<div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-									</div>
-									<!--begin::Col-->
-									<div class="col-lg-12 col-xl-12 col-xxl-6 mb-5 mb-xl-0">
-
-										@yield('content')
-									
-									</div>
-									<!--end::Col-->
-								</div>
-								<!--end::Row-->
-								
-								<!--begin::Row-->
-								<div class="row gy-5 g-xl-10">
-									
-								</div>
-								<!--end::Row-->
-							</div>
-							<!--end::Container-->
-						</div>
-						<!--end::Post-->
+						@yield('content')
+						
 					</div>
 					<!--end::Content-->
 					
