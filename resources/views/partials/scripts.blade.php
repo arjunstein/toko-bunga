@@ -16,3 +16,4 @@
 		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
+		<script src="{{ mix('js/app.js') }}"></script>
