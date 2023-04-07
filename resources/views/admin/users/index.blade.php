@@ -300,7 +300,9 @@
 												@foreach ($user as $e=>$usr)
 												<tr>
 													<td>{{ $e+1 }}</td>
-													<td>{{ $usr->name }}</td>
+													<td>
+														<a href="{{ url('admin/users/'.$usr->id.'/edit') }}" class="text-gray-800 text-hover-primary mb-1">{{ $usr->name }}</a>
+													</td>
 													<td>{{ $usr->privilege }}</td>
 													<td>{{ $usr->email }}</td>
 													<td>{{ $usr->whatsapp }}</td>
