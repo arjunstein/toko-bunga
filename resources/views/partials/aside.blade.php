@@ -28,7 +28,7 @@
 							<!--begin::Menu-->
 							<div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
 								<div class="menu-item">
-									<a class="menu-link" href="/dashboard">
+									<a class="menu-link {{ Request::is('dashboard') ? 'active' : '' }}" href="/dashboard">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -50,7 +50,7 @@
 									</div>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="/admin/users">
+									<a class="menu-link {{ Request::is('admin/users') ? 'active' : '' }}" href="/admin/users">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -65,7 +65,7 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="/admin/categories">
+									<a class="menu-link {{ Request::is('admin/categories') ? 'active' : '' }}" href="/admin/categories">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -80,7 +80,7 @@
 									</a>
 								</div>
 								<div class="menu-item">
-									<a class="menu-link" href="/admin/products">
+									<a class="menu-link {{ Request::is('admin/products') ? 'active' : '' }}" href="/admin/products">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
 											<span class="svg-icon svg-icon-2">
