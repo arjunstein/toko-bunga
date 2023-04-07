@@ -16,7 +16,7 @@ License: For each use you must have a valid license purchased only from above li
 
         @include('partials.head')
 
-		@livewireStyles
+		
 
 		@vite([])
 	</head>
@@ -92,7 +92,7 @@ License: For each use you must have a valid license purchased only from above li
 		
         @include('partials.scripts')
 		
-		@livewireScripts
+		
 
     </body>
 	<!--end::Body-->
