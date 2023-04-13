@@ -80,7 +80,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:2|max:30',
+            'email' => 'required|email',
+            'whatsapp' => 'required|min:10|max:14',
+            'alamat' => 'required|string|min:5|max:100',
+            'password' => 'sometimes',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->whatsapp = $request->whatsapp;
+        $user->alamat = $request->alamat;
+        if (!empty($request['password'])) {
+        $user->password = bcrypt($request['password']);
+        }
+        $user->save();
+
+        return redirect('admin/users');
     }
 
     /**
