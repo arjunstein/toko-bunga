@@ -85,20 +85,17 @@ class UserController extends Controller
             'email' => 'required|email',
             'whatsapp' => 'required|min:10|max:14',
             'alamat' => 'required|string|min:5|max:100',
-            'password' => 'sometimes',
+            // 'password' => 'sometimes',
         ]);
 
-        $user = new User();
+        $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->whatsapp = $request->whatsapp;
         $user->alamat = $request->alamat;
-        if (!empty($request['password'])) {
-        $user->password = bcrypt($request['password']);
-        }
-        $user->save();
+        $user->update();
 
-        return redirect('admin/users');
+        return redirect('admin/users')->with('sukses','berhasil');
     }
 
     /**

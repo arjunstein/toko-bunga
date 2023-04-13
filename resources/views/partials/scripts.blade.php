@@ -23,3 +23,31 @@
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 		<script src="{{ mix('js/app.js') }}"></script>
+		<script>
+			var flash = "{{ Session::has('sukses') }}";
+        if(flash){
+            var pesan = "{{ Session::get('sukses') }}"
+            swal.fire("Sukses", pesan, "success");
+        }
+ 
+        var gagal = "{{ Session::has('gagal') }}";
+        if(gagal){
+            var pesan = "{{ Session::get('gagal') }}"
+            swal.fire("Error", pesan, "error");
+        }
+        var info = "{{ Session::has('info') }}";
+        if (info) {
+          var pesan = "{{ Session::get('info') }}"
+          swal.fire("Info", pesan, "info");
+        }
+		var info = "{{ Session::has('warning') }}";
+        if (info) {
+          var pesan = "{{ Session::get('warning') }}"
+          swal.fire("Warning", pesan, "warning");
+        }
+		var info = "{{ Session::has('question') }}";
+        if (info) {
+          var pesan = "{{ Session::get('question') }}"
+          swal.fire("Question", pesan, "question");
+        }
+		</script>
