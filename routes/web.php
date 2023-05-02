@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Livewire\Admin\Users\Index;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,9 @@ Route::group(['middleware'=>['auth']], function(){
 
     // Kelola user
     Route::resource('/admin/users', UserController::class);
+
+    // Kelola category
+    Route::resource('/admin/categories', CategoryController::class);
 
     // Route::get('admin/users', Index::class); => livewire route
 });

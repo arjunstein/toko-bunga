@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +15,10 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Kelola user',
-            'user' => User::orderBy('id','asc')->get(),
+            'title' => 'Kategori Bunga',
         ];
 
-        return view('admin/users/index', $data);
+        return view('admin/categories/index',$data);
     }
 
     /**
@@ -63,12 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data = [
-            'title' => 'Edit user',
-            'user' => User::findOrFail($id),
-        ];
-
-        return view('admin.users.edit', $data);
+        //
     }
 
     /**
@@ -80,22 +73,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|min:2|max:30',
-            'email' => 'required|email',
-            'whatsapp' => 'required|min:10|max:14',
-            'alamat' => 'required|string|min:5|max:100',
-            // 'password' => 'sometimes',
-        ]);
-
-        $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->whatsapp = $request->whatsapp;
-        $user->alamat = $request->alamat;
-        $user->update();
-
-        return redirect('admin/users')->with('sukses','Data berhasil diperbarui');
+        //
     }
 
     /**
