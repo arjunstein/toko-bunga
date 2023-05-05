@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -16,6 +17,7 @@ class CategoryController extends Controller
     {
         $data = [
             'title' => 'Kategori Bunga',
+            'category' => Category::orderBy('id','asc')->get(),
         ];
 
         return view('admin/categories/index',$data);
