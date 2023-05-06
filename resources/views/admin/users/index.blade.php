@@ -51,7 +51,7 @@
 														<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor" />
 													</svg>
 												</span>
-												<!--end::Svg Icon-->Add User</button>
+												<!--end::Svg Icon-->Tambah User</button>
 												<!--end::Add user-->
 											</div>
 											<!--end::Toolbar-->
@@ -72,7 +72,7 @@
 														<!--begin::Modal header-->
 														<div class="modal-header" id="kt_modal_add_user_header">
 															<!--begin::Modal title-->
-															<h2 class="fw-bolder">Add User</h2>
+															<h2 class="fw-bolder">Tambah User</h2>
 															<!--end::Modal title-->
 															<!--begin::Close-->
 															<div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -97,46 +97,10 @@
 																	<!--begin::Input group-->
 																	<div class="fv-row mb-7">
 																		<!--begin::Label-->
-																		<label class="d-block fw-bold fs-6 mb-5">Avatar</label>
-																		<!--end::Label-->
-																		<!--begin::Image input-->
-																		<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
-																			<!--begin::Preview existing avatar-->
-																			<div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/300-6.jpg);"></div>
-																			<!--end::Preview existing avatar-->
-																			<!--begin::Label-->
-																			<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-																				<i class="bi bi-pencil-fill fs-7"></i>
-																				<!--begin::Inputs-->
-																				<input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-																				<input type="hidden" name="avatar_remove" />
-																				<!--end::Inputs-->
-																			</label>
-																			<!--end::Label-->
-																			<!--begin::Cancel-->
-																			<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-																				<i class="bi bi-x fs-2"></i>
-																			</span>
-																			<!--end::Cancel-->
-																			<!--begin::Remove-->
-																			<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-																				<i class="bi bi-x fs-2"></i>
-																			</span>
-																			<!--end::Remove-->
-																		</div>
-																		<!--end::Image input-->
-																		<!--begin::Hint-->
-																		<div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-																		<!--end::Hint-->
-																	</div>
-																	<!--end::Input group-->
-																	<!--begin::Input group-->
-																	<div class="fv-row mb-7">
-																		<!--begin::Label-->
-																		<label class="required fw-bold fs-6 mb-2">Full Name</label>
+																		<label class="required fw-bold fs-6 mb-2">Nama lengkap</label>
 																		<!--end::Label-->
 																		<!--begin::Input-->
-																		<input type="text" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="Emma Smith" />
+																		<input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Arjun Gunawan" autocomplete="off" />
 																		<!--end::Input-->
 																	</div>
 																	<!--end::Input group-->
@@ -146,7 +110,16 @@
 																		<label class="required fw-bold fs-6 mb-2">Email</label>
 																		<!--end::Label-->
 																		<!--begin::Input-->
-																		<input type="email" name="user_email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com" value="smith@kpmg.com" />
+																		<input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="arjun@email.com" />
+																		<!--end::Input-->
+																	</div>
+																	<!--end::Input group-->
+																	<div class="fv-row mb-7">
+																		<!--begin::Label-->
+																		<label class="required fw-bold fs-6 mb-2">Whatsapp</label>
+																		<!--end::Label-->
+																		<!--begin::Input-->
+																		<input type="number" name="whatsapp" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="087777115***" />
 																		<!--end::Input-->
 																	</div>
 																	<!--end::Input group-->
@@ -161,12 +134,11 @@
 																			<!--begin::Radio-->
 																			<div class="form-check form-check-custom form-check-solid">
 																				<!--begin::Input-->
-																				<input class="form-check-input me-3" name="user_role" type="radio" value="0" id="kt_modal_update_role_option_0" checked='checked' />
+																				<input class="form-check-input me-3" name="privilege" type="radio" value="admin" id="kt_modal_update_role_option_0" />
 																				<!--end::Input-->
 																				<!--begin::Label-->
 																				<label class="form-check-label" for="kt_modal_update_role_option_0">
-																					<div class="fw-bolder text-gray-800">Administrator</div>
-																					<div class="text-gray-600">Best for business owners and company administrators</div>
+																					<div class="fw-bolder text-gray-800">Admin</div>
 																				</label>
 																				<!--end::Label-->
 																			</div>
@@ -179,66 +151,11 @@
 																			<!--begin::Radio-->
 																			<div class="form-check form-check-custom form-check-solid">
 																				<!--begin::Input-->
-																				<input class="form-check-input me-3" name="user_role" type="radio" value="1" id="kt_modal_update_role_option_1" />
+																				<input class="form-check-input me-3" name="privilege" type="radio" value="pelanggan" id="kt_modal_update_role_option_1" />
 																				<!--end::Input-->
 																				<!--begin::Label-->
 																				<label class="form-check-label" for="kt_modal_update_role_option_1">
-																					<div class="fw-bolder text-gray-800">Developer</div>
-																					<div class="text-gray-600">Best for developers or people primarily using the API</div>
-																				</label>
-																				<!--end::Label-->
-																			</div>
-																			<!--end::Radio-->
-																		</div>
-																		<!--end::Input row-->
-																		<div class='separator separator-dashed my-5'></div>
-																		<!--begin::Input row-->
-																		<div class="d-flex fv-row">
-																			<!--begin::Radio-->
-																			<div class="form-check form-check-custom form-check-solid">
-																				<!--begin::Input-->
-																				<input class="form-check-input me-3" name="user_role" type="radio" value="2" id="kt_modal_update_role_option_2" />
-																				<!--end::Input-->
-																				<!--begin::Label-->
-																				<label class="form-check-label" for="kt_modal_update_role_option_2">
-																					<div class="fw-bolder text-gray-800">Analyst</div>
-																					<div class="text-gray-600">Best for people who need full access to analytics data, but don't need to update business settings</div>
-																				</label>
-																				<!--end::Label-->
-																			</div>
-																			<!--end::Radio-->
-																		</div>
-																		<!--end::Input row-->
-																		<div class='separator separator-dashed my-5'></div>
-																		<!--begin::Input row-->
-																		<div class="d-flex fv-row">
-																			<!--begin::Radio-->
-																			<div class="form-check form-check-custom form-check-solid">
-																				<!--begin::Input-->
-																				<input class="form-check-input me-3" name="user_role" type="radio" value="3" id="kt_modal_update_role_option_3" />
-																				<!--end::Input-->
-																				<!--begin::Label-->
-																				<label class="form-check-label" for="kt_modal_update_role_option_3">
-																					<div class="fw-bolder text-gray-800">Support</div>
-																					<div class="text-gray-600">Best for employees who regularly refund payments and respond to disputes</div>
-																				</label>
-																				<!--end::Label-->
-																			</div>
-																			<!--end::Radio-->
-																		</div>
-																		<!--end::Input row-->
-																		<div class='separator separator-dashed my-5'></div>
-																		<!--begin::Input row-->
-																		<div class="d-flex fv-row">
-																			<!--begin::Radio-->
-																			<div class="form-check form-check-custom form-check-solid">
-																				<!--begin::Input-->
-																				<input class="form-check-input me-3" name="user_role" type="radio" value="4" id="kt_modal_update_role_option_4" />
-																				<!--end::Input-->
-																				<!--begin::Label-->
-																				<label class="form-check-label" for="kt_modal_update_role_option_4">
-																					<div class="fw-bolder text-gray-800">Trial</div>
-																					<div class="text-gray-600">Best for people who need to preview content data, but don't need to make any updates</div>
+																					<div class="fw-bolder text-gray-800">Pelanggan</div>
 																				</label>
 																				<!--end::Label-->
 																			</div>
@@ -246,6 +163,17 @@
 																		</div>
 																		<!--end::Input row-->
 																		<!--end::Roles-->
+																		<!--end::Input group-->
+																		<div class='separator separator-dashed my-5'></div>
+																		<div class="fv-row mb-7">
+																			<!--begin::Label-->
+																			<label class="required fw-bold fs-6 mb-2">Alamat</label>
+																			<!--end::Label-->
+																			<!--begin::Input-->
+																			<textarea name="alamat" id="alamat" class="form-control form-control-solid mb-3 mb-lg-0"></textarea>
+																			<!--end::Input-->
+																		</div>
+																	<!--end::Input group-->
 																	</div>
 																	<!--end::Input group-->
 																</div>
@@ -306,7 +234,7 @@
 													<td>{{ $usr->privilege }}</td>
 													<td>{{ $usr->email }}</td>
 													<td>{{ $usr->whatsapp }}</td>
-													<td>{{ $usr->created_at }}</td>
+													<td>{{ date('d F Y', strtotime($usr->created_at)) }}</td>
 													<!--begin::Joined-->
 													<!--begin::Action=-->
 													<td class="text-end">
