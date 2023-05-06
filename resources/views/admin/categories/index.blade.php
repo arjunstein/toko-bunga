@@ -63,7 +63,6 @@
 														{{ $e+1 }}
 													</td>
 													<!--end::Checkbox-->
-													
 													<!--begin::Type=-->
 													<td>
                                                 	<!--begin::Title-->
@@ -72,7 +71,7 @@
 													</td>
 													<!--end::Type=-->
                                                     <!--begin::Category=-->
-													<td>{{ $ctg->created_at }}</td>
+													<td>{{ date('d F Y', strtotime($ctg->created_at)) }}</td>
 													<!--end::Category=-->
 													<!--begin::Action=-->
 													<td class="text-end">
