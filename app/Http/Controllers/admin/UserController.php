@@ -41,7 +41,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'whatsapp' => 'required|regex:/^\+[0-9]\d{1,14}$/',
+            'privilege' => 'required',
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = '12345';
+        $user->whatsapp = $request->whatsapp;
+        $user->privilege = $request->privilege;
+        $user->save();
+
+        return redirect()->back()->with('Sukses','Berhasil ditambahkan');
     }
 
     /**
