@@ -42,10 +42,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'whatsapp' => 'required|regex:/^\+[0-9]\d{1,14}$/',
+            'name' => 'required', 'string', 'max:255',
+            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'password' => 'required', 'string', 'min:8', 'confirmed',
+            'whatsapp' => 'required|string|unique:users',
             'privilege' => 'required',
         ]);
 
@@ -56,7 +56,7 @@ class UserController extends Controller
         $user->whatsapp = $request->whatsapp;
         $user->privilege = $request->privilege;
         $user->save();
-
+        // dd($user);
         return redirect()->back()->with('Sukses','Berhasil ditambahkan');
     }
 
