@@ -101,8 +101,13 @@
 																		<label class="required fw-bold fs-6 mb-2">Nama lengkap</label>
 																		<!--end::Label-->
 																		<!--begin::Input-->
-																		<input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Arjun Gunawan" autocomplete="off" />
+																		<input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0 @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Arjun Gunawan" autocomplete="off" />
 																		<!--end::Input-->
+																	@error('name')
+																		<span class="invalid-feedback" role="alert">
+																			<strong>{{ $message }}</strong>
+																		</span>
+																	@enderror
 																	</div>
 																	<!--end::Input group-->
 																	<!--begin::Input group-->
@@ -111,8 +116,13 @@
 																		<label class="required fw-bold fs-6 mb-2">Email</label>
 																		<!--end::Label-->
 																		<!--begin::Input-->
-																		<input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="arjun@email.com" />
+																		<input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0 @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="arjun@email.com" />
 																		<!--end::Input-->
+																		@error('email')
+																			<span class="invalid-feedback" role="alert">
+																				<strong>{{ $message }}</strong>
+																			</span>
+																		@enderror
 																	</div>
 																	<!--end::Input group-->
 																	<div class="fv-row mb-7">
@@ -120,8 +130,13 @@
 																		<label class="required fw-bold fs-6 mb-2">Whatsapp</label>
 																		<!--end::Label-->
 																		<!--begin::Input-->
-																		<input type="number" name="whatsapp" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="087777115***" />
+																		<input type="number" name="whatsapp" class="form-control form-control-solid mb-3 mb-lg-0 @error('whatsapp') is-invalid @enderror" value="{{ old('whatsapp') }}" placeholder="087777115***" />
 																		<!--end::Input-->
+																		@error('whatsapp')
+																			<span class="invalid-feedback" role="alert">
+																				<strong>{{ $message }}</strong>
+																			</span>
+																		@enderror
 																	</div>
 																	<!--end::Input group-->
 																	<!--begin::Input group-->
@@ -135,13 +150,18 @@
 																			<!--begin::Radio-->
 																			<div class="form-check form-check-custom form-check-solid">
 																				<!--begin::Input-->
-																				<input class="form-check-input me-3" name="privilege" type="radio" value="admin" id="kt_modal_update_role_option_0" />
+																				<input class="form-check-input me-3 @error('privilege') is-invalid @enderror" name="privilege" type="radio" value="admin" id="admin" />
 																				<!--end::Input-->
 																				<!--begin::Label-->
-																				<label class="form-check-label" for="kt_modal_update_role_option_0">
+																				<label class="form-check-label" for="admin">
 																					<div class="fw-bolder text-gray-800">Admin</div>
 																				</label>
 																				<!--end::Label-->
+																				@error('privilege')
+																					<span class="invalid-feedback" role="alert">
+																						<strong>{{ $message }}</strong>
+																					</span>
+																				@enderror
 																			</div>
 																			<!--end::Radio-->
 																		</div>
@@ -152,13 +172,18 @@
 																			<!--begin::Radio-->
 																			<div class="form-check form-check-custom form-check-solid">
 																				<!--begin::Input-->
-																				<input class="form-check-input me-3" name="privilege" type="radio" value="pelanggan" id="kt_modal_update_role_option_1" />
+																				<input class="form-check-input me-3 @error('privilege') is-invalid @enderror" name="privilege" type="radio" value="pelanggan" id="pelanggan" />
 																				<!--end::Input-->
 																				<!--begin::Label-->
-																				<label class="form-check-label" for="kt_modal_update_role_option_1">
+																				<label class="form-check-label" for="pelanggan">
 																					<div class="fw-bolder text-gray-800">Pelanggan</div>
 																				</label>
 																				<!--end::Label-->
+																				@error('privilege')
+																					<span class="invalid-feedback" role="alert">
+																						<strong>{{ $message }}</strong>
+																					</span>
+																				@enderror
 																			</div>
 																			<!--end::Radio-->
 																		</div>
@@ -171,8 +196,13 @@
 																			<label class="required fw-bold fs-6 mb-2">Alamat</label>
 																			<!--end::Label-->
 																			<!--begin::Input-->
-																			<textarea name="alamat" id="alamat" class="form-control form-control-solid mb-3 mb-lg-0"></textarea>
+																			<textarea name="alamat" id="alamat" class="form-control form-control-solid mb-3 mb-lg-0 @error('alamat') is-invalid @enderror">{{ old('alamat') }}</textarea>
 																			<!--end::Input-->
+																			@error('alamat')
+																				<span class="invalid-feedback" role="alert">
+																					<strong>{{ $message }}</strong>
+																				</span>
+																			@enderror
 																		</div>
 																	<!--end::Input group-->
 																	</div>
