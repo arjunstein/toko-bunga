@@ -39,26 +39,28 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required', 'string', 'max:255',
-            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
-            'password' => 'required', 'string', 'min:8', 'confirmed',
-            'whatsapp' => 'required|string|unique:users',
-            'privilege' => 'required',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required', 'string', 'max:255',
+    //         'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+    //         'password' => 'required', 'string', 'min:8', 'confirmed',
+    //         'whatsapp' => 'required|string|unique:users',
+    //         'privilege' => 'required',
+    //         'alamat' => 'required|string',
+    //     ]);
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = '12345';
-        $user->whatsapp = $request->whatsapp;
-        $user->privilege = $request->privilege;
-        $user->save();
-        // dd($user);
-        return redirect()->back()->with('Sukses','Berhasil ditambahkan');
-    }
+    //     $user = new User;
+    //     $user->name = $request->name;
+    //     $user->email = $request->email;
+    //     $user->password = bcrypt('12345');
+    //     $user->whatsapp = $request->whatsapp;
+    //     $user->privilege = $request->privilege;
+    //     $user->alamat = $request->alamat;
+    //     $user->save();
+
+    //     return redirect()->back()->with('Sukses','Berhasil ditambahkan');
+    // }
 
     /**
      * Display the specified resource.
