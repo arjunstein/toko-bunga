@@ -27,7 +27,7 @@
 										<!--begin::Card toolbar-->
 										<div class="card-toolbar">
 											<!--begin::Add customer-->
-											<a href="../../demo1/dist/apps/ecommerce/catalog/add-category.html" class="btn btn-primary">Add Category</a>
+											<a href="{{ url('admin/categories/create') }}" class="btn btn-primary">Add Category</a>
 											<!--end::Add customer-->
 										</div>
 										<!--end::Card toolbar-->
