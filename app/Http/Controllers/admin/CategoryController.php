@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -30,7 +31,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Tambah Kategori Bunga',
+        ];
+
+        return view('admin/categories/create',$data);   
     }
 
     /**
@@ -41,7 +46,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'categoryName' => 'required|string|max:30|min:3',
+            ]);
+
+            $category = new Category;
+            $category->categoryName = $request->categoryName;
+            $category->created_at = Carbon::now();
+            $category->save();
+
+            // dd($category);
+
+            return redirect('admin/categories')->with('sukses','Kategori berhasil ditambahkan');
     }
 
     /**
