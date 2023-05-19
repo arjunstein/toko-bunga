@@ -91,7 +91,7 @@
 														<!--begin::Modal body-->
 														<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
 															<!--begin::Form-->
-															<form class="form" action="{{ url('admin/users') }}" method="POST">
+															<form action="{{ url('admin/users') }}" method="POST">
 																@csrf
 																<!--begin::Scroll-->
 																<div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
@@ -144,51 +144,22 @@
 																		<!--begin::Label-->
 																		<label class="required fw-bold fs-6 mb-5">Role</label>
 																		<!--end::Label-->
-																		<!--begin::Roles-->
-																		<!--begin::Input row-->
-																		<div class="d-flex fv-row">
-																			<!--begin::Radio-->
-																			<div class="form-check form-check-custom form-check-solid">
-																				<!--begin::Input-->
-																				<input class="form-check-input me-3 @error('privilege') is-invalid @enderror" name="privilege" type="radio" value="admin" id="admin" />
-																				<!--end::Input-->
-																				<!--begin::Label-->
-																				<label class="form-check-label" for="admin">
-																					<div class="fw-bolder text-gray-800">Admin</div>
-																				</label>
-																				<!--end::Label-->
-																				@error('privilege')
-																					<span class="invalid-feedback" role="alert">
-																						<strong>{{ $message }}</strong>
-																					</span>
-																				@enderror
-																			</div>
-																			<!--end::Radio-->
-																		</div>
-																		<!--end::Input row-->
-																		<div class='separator separator-dashed my-5'></div>
-																		<!--begin::Input row-->
-																		<div class="d-flex fv-row">
-																			<!--begin::Radio-->
-																			<div class="form-check form-check-custom form-check-solid">
-																				<!--begin::Input-->
-																				<input class="form-check-input me-3 @error('privilege') is-invalid @enderror" name="privilege" type="radio" value="pelanggan" id="pelanggan" />
-																				<!--end::Input-->
-																				<!--begin::Label-->
-																				<label class="form-check-label" for="pelanggan">
-																					<div class="fw-bolder text-gray-800">Pelanggan</div>
-																				</label>
-																				<!--end::Label-->
-																				@error('privilege')
-																					<span class="invalid-feedback" role="alert">
-																						<strong>{{ $message }}</strong>
-																					</span>
-																				@enderror
-																			</div>
-																			<!--end::Radio-->
-																		</div>
-																		<!--end::Input row-->
-																		<!--end::Roles-->
+																		<div class="w-100">
+																	<div class="form-floating border rounded">
+																		<!--begin::Select2-->
+																		<select class="form-select form-select-solid lh-1 py-4 mb-3 mb-lg-0 @error('whatsapp') is-invalid @enderror" name="privilege" data-placeholder="Select a role">
+																			<option disabled>Pilih</option>
+																			<option value="admin">Admin</option>
+																			<option value="pelanggan">Pelanggan</option>
+																		</select>
+																		<!--end::Select2-->
+																	</div>
+																	@error('privilege')
+																		<span class="invalid-feedback" role="alert">
+																			<strong>{{ $message }}</strong>
+																		</span>
+																	@enderror
+																</div>
 																		<!--end::Input group-->
 																		<div class='separator separator-dashed my-5'></div>
 																		<div class="fv-row mb-7">
@@ -211,11 +182,9 @@
 																<!--end::Scroll-->
 																<!--begin::Actions-->
 																<div class="text-center pt-15">
-																	<button type="reset" class="btn btn-danger me-3" data-bs-dismiss="modal">Batal</button>
+																	<button class="btn btn-danger me-3" data-bs-dismiss="modal">Batal</button>
 																	<button type="submit" class="btn btn-primary">
-																		<span class="indicator-label">Submit</span>
-																		<span class="indicator-progress">Please wait...
-																		<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+																		Submit
 																	</button>
 																</div>
 																<!--end::Actions-->
