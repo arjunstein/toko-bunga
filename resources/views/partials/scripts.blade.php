@@ -49,4 +49,53 @@
           var pesan = "{{ Session::get('question') }}"
           swal.fire("Question", pesan, "question");
         }
+		
+
+$(document).ready(function() {
+    $('.btn-delete').click(function(e) {
+        e.preventDefault();
+        var deleteUrl = $(this).attr('data-url');
+        
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Anda yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika tombol "Hapus" diklik
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Sukses',
+                            text: 'Kategori berhasil dihapus.',
+                            icon: 'success'
+                        }).then((result) => {
+                            // Tindakan setelah penghapusan berhasil
+                            if (result.isConfirmed) {
+                                // Lakukan pengalihan halaman
+                                window.location.href = "{{ url('admin/categories') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat menghapus data.',
+                            icon: 'error'
+                        });
+                    }
+                });
+            }
+        });
+    });
+});
+
 		</script>

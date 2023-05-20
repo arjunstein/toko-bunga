@@ -43,7 +43,7 @@
 												<!--end::Svg Icon-->Export PDF</button>
 												<!--end::Export-->
 												<!--begin::Add user-->
-												<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
+												<a href="{{ url('admin/users/create') }}" class="btn btn-primary">
 												<!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
 												<span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -51,7 +51,7 @@
 														<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor" />
 													</svg>
 												</span>
-												<!--end::Svg Icon-->Tambah User</button>
+												<!--end::Svg Icon-->Tambah User</a>
 												<!--end::Add user-->
 											</div>
 											<!--end::Toolbar-->
