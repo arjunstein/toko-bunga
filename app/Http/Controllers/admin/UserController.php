@@ -30,7 +30,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Tambah user'
+        ];
+
+        return view('admin/users/create',$data);
     }
 
     /**

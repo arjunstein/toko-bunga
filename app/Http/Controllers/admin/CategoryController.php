@@ -79,7 +79,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $data = [
+            'title' => 'Edit Kategori Bunga',
+            'category' => $category
+            ];
+      
+            return view('admin/categories/edit',$data);          
     }
 
     /**
@@ -91,7 +97,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'categoryName' => 'required|string|max:30|min:3',
+            ]);
+
+            $category = Category::findOrFail($id);
+            $category->categoryName = $request->categoryName;
+            $category->updated_at = Carbon::now();
+            $category->update();
+
+            // dd($category);
+
+            return redirect('admin/categories')->with('sukses','Kategori berhasil diperbarui');
     }
 
     /**
@@ -102,6 +119,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $category = Category::findOrFail($id);
+            $category->delete();
+
+            return response()->json(['message' => 'Data berhasil dihapus.']);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus data.'], 500);
+        }
     }
 }
