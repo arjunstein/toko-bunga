@@ -68,7 +68,7 @@
 													<!--begin::Type=-->
 													<td>
                                                 	<!--begin::Title-->
-												    	<a href="{{ url('admin/categories/'.$ctg->id.'/edit') }}" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">{{ $ctg->categoryName }}</a>
+												    	<a href="{{ url('admin/categories/'.$ctg->id.'/edit') }}" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">{{ ucwords($ctg->categoryName) }}</a>
 													<!--end::Title-->
 													</td>
 													<!--end::Type=-->

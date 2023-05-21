@@ -49,8 +49,26 @@
           var pesan = "{{ Session::get('question') }}"
           swal.fire("Question", pesan, "question");
         }
-		
 
+        // Logout konfirmasi
+function confirmLogout() {
+        Swal.fire({
+            title: 'Konfirmasi Logout',
+            text: 'Anda yakin ingin logout dari situs ini?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            confirmButtonText: 'Ya, logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Tambahkan URL logout Anda di bawah ini
+                window.location.href = '/logout';
+            }
+        });
+    }
+        
+// Hapus kategori
 $(document).ready(function() {
     $('.btn-delete').click(function(e) {
         e.preventDefault();
@@ -58,10 +76,11 @@ $(document).ready(function() {
         
         Swal.fire({
             title: 'Konfirmasi Hapus',
-            text: 'Anda yakin ingin menghapus data ini?',
-            icon: 'warning',
+            text: 'Anda yakin ingin menghapus kategori ini?',
+            icon: 'question',
             showCancelButton: true,
-            confirmButtonText: 'Hapus',
+            confirmButtonColor: 'red',
+            confirmButtonText: 'Ya, Hapus',
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
@@ -98,4 +117,52 @@ $(document).ready(function() {
     });
 });
 
+// Hapus user
+$(document).ready(function() {
+    $('.btn-delete-user').click(function(e) {
+        e.preventDefault();
+        var deleteUrl = $(this).attr('data-url');
+        
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            text: 'Anda yakin ingin menghapus user ini?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika tombol "Hapus" diklik
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Sukses',
+                            text: 'User berhasil dihapus.',
+                            icon: 'success'
+                        }).then((result) => {
+                            // Tindakan setelah penghapusan berhasil
+                            if (result.isConfirmed) {
+                                // Lakukan pengalihan halaman
+                                window.location.href = "{{ url('admin/users') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat menghapus data user.',
+                            icon: 'error'
+                        });
+                    }
+                });
+            }
+        });
+    });
+});
 		</script>

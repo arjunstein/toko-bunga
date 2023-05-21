@@ -46,12 +46,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required', 'string', 'max:255',
-            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
-            'password' => 'required', 'string', 'min:8', 'confirmed',
+            'name' => 'required', 'string', 'max:50',
+            'email' => 'required|string|email|max:255|unique:users',
+            // 'password' => 'required', 'string', 'min:8', 'confirmed',
             'whatsapp' => 'required|string|unique:users',
             'privilege' => 'required',
-            'alamat' => 'required|string',
+            'alamat' => 'required|string|min:20|max:255',
         ]);
 
         $user = new User;
@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->alamat = $request->alamat;
         $user->save();
 
-        return redirect()->back()->with('Sukses','Berhasil ditambahkan');
+        return redirect('admin/users')->with('sukses','User baru berhasil ditambahkan');
     }
 
     /**
@@ -103,19 +103,23 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|min:2|max:30',
+            'name' => 'required|string|min:3|max:30',
             'email' => 'required|email',
             'whatsapp' => 'required|min:10|max:14',
-            'alamat' => 'required|string|min:5|max:100',
+            'alamat' => 'required|string|min:20|max:255',
             // 'password' => 'sometimes',
+            'privilege' => 'required',
         ]);
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->whatsapp = $request->whatsapp;
+        $user->privilege = $request->privilege;
         $user->alamat = $request->alamat;
         $user->update();
+
+        // dd($user);
 
         return redirect('admin/users')->with('sukses','Data berhasil diperbarui');
     }
@@ -128,6 +132,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+
+            return response()->json(['message' => 'User berhasil dihapus.']);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus data.'], 500);
+        }
     }
 }

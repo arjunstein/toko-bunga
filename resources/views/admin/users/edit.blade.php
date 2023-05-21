@@ -3,148 +3,88 @@
 @section('content')
 
 <div class="post d-flex flex-column-fluid" id="kt_post">
-<div id="kt_content_container" class="container-fluid">
-								<!--begin::Contacts App- Edit Contact-->
-								<div class="row g-7 justify-content-center">
-									<!--begin::Content-->
-									<div class="col-xl-8">
-										<!--begin::Contacts-->
-										<div class="card card-flush h-lg-100" id="kt_contacts_main">
-											<!--begin::Card header-->
-											<div class="card-header pt-7" id="kt_chat_contacts_header">
-												<!--begin::Card title-->
-												<div class="card-title">
-													<h2>{{ $title }}</h2>
-												</div>
-												<!--end::Card title-->
-											</div>
-											<!--end::Card header-->
-											<!--begin::Card body-->
-											<div class="card-body pt-5">
-												<!--begin::Form-->
-												<form method="POST" action="{{ url('admin/users/'.$user->id) }}">
-													@csrf
-													{{ method_field('PUT') }}													
-													<!--begin::Input group-->
-													<div class="fv-row mb-7">
-														<!--begin::Label-->
-														<label class="fs-6 fw-bold form-label mt-3">
-															<span>Name</span>
-															<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Edit nama"></i>
-														</label>
-														<!--end::Label-->
-														<!--begin::Input-->
-														<input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" />
-														<!--end::Input-->
-														@error('name')
-                                    					<span class="invalid-feedback" role="alert">
-                                       					<strong>{{ $message }}</strong>
-                                    					</span>
-                               							 @enderror
-													</div>
-													<!--end::Input group-->
-													<!--begin::Input group-->
-													<div class="fv-row mb-7">
-														<!--begin::Label-->
-														<label class="fs-6 fw-bold form-label mt-3">
-															<span>Email</span>
-															<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Edit email."></i>
-														</label>
-														<!--end::Label-->
-														<!--begin::Input-->
-														<input type="text" class="form-control form-control-solid @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" />
-														<!--end::Input-->
-														@error('email')
-                                    					<span class="invalid-feedback" role="alert">
-                                       					<strong>{{ $message }}</strong>
-                                    					</span>
-                               							@enderror
-													</div>
-													<!--end::Input group-->
-													<!--begin::Row-->
-													<div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
-														<!--begin::Col-->
-														<div class="col">
-															<!--begin::Input group-->
-															<div class="fv-row mb-7">
-																<!--begin::Label-->
-																<label class="fs-6 fw-bold form-label mt-3">
-																	<span>Role</span>
-																	<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Role tidak bisa diganti"></i>
-																</label>
-																<!--end::Label-->
-																<!--begin::Input-->
-																<input type="text" class="form-control form-control-solid" name="privilege" value="{{ $user->privilege }}" readonly />
-																<!--end::Input-->
-															</div>
-															<!--end::Input group-->
-														</div>
-														<!--end::Col-->
-														<!--begin::Col-->
-														<div class="col">
-															<!--begin::Input group-->
-															<div class="fv-row mb-7">
-																<!--begin::Label-->
-																<label class="fs-6 fw-bold form-label mt-3">
-																	<span>Whatsapp</span>
-																	<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Edit nomor whatsapp."></i>
-																</label>
-																<!--end::Label-->
-																<!--begin::Input-->
-																<input type="text" class="form-control form-control-solid @error('whatsapp') is-invalid @enderror" name="whatsapp" value="{{ $user->whatsapp }}" />
-																<!--end::Input-->
-																@error('whatsapp')
-                                    							<span class="invalid-feedback" role="alert">
-																<strong>{{ $message }}</strong>
-																</span>
-																@enderror
-															</div>
-															<!--end::Input group-->
-														</div>
-														<!--end::Col-->
-													</div>
-													<!--end::Row-->
-													<!--begin::Input group-->
-													<div class="fv-row mb-7">
-														<!--begin::Label-->
-														<label class="fs-6 fw-bold form-label mt-3">
-															<span>Alamat</span>
-															<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Edit alamat disini."></i>
-														</label>
-														<!--end::Label-->
-														<!--begin::Input-->
-														<textarea class="form-control form-control-solid @error('alamat') is-invalid @enderror" name="alamat">{{ $user->alamat }}</textarea>
-														<!--end::Input-->
-														@error('alamat')
-                                    						<span class="invalid-feedback" role="alert">
-																<strong>{{ $message }}</strong>
-															</span>
-														@enderror
-													</div>
-													<!--end::Input group-->
-													<!--begin::Separator-->
-													<div class="separator mb-6"></div>
-													<!--end::Separator-->
-													<!--begin::Action buttons-->
-													<div class="d-flex justify-content-end">
-														<!--begin::Button-->
-														<button type="submit" id="" class="btn btn-primary">
-															Save
-														</button>
-														<!--end::Button-->
-													</div>
-													<!--end::Action buttons-->
-												</form>
-												<!--end::Form-->
-											</div>
-											<!--end::Card body-->
-										</div>
-										<!--end::Contacts-->
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Contacts App- Edit Contact-->
+	<div id="kt_content_container" class="container-xxl">
+        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+            <div class="row g-7 justify-content-center">									
+				<div class="col-xl-10">		
+					<form action="{{ url('admin/users/'.$user->id) }}" method="POST">
+            	    @csrf
+					@method('PUT')
+                		<div class="card card-flush py-4">
+							<div class="card-body pt-0">
+                                <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
+									<div class="col">
+							            <div class="mb-7 fv-row">
+                                            <label class="required form-label">Nama Lengkap</label>
+                                            <input type="text" name="name" class="form-control mb-2 @error('name') is-invalid @enderror" value="{{ $user->name }}" placeholder="John Doe" />
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-10 fv-row">
+                                            <label class="required form-label">Email</label>
+                                            <input type="email" name="email" class="form-control mb-2 @error('email') is-invalid @enderror" value="{{ $user->email }}" placeholder="johndoe@gmail.com" />
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
+									<div class="col">
+							            <div class="mb-7 fv-row">
+                                            <label class="required form-label">Role</label>
+                                                <select class="form-select form-select-solid @error('privilege') is-invalid @enderror" name="privilege" data-control="select2" data-hide-search="true" data-placeholder="Select a layout">
+                                                    <option></option>
+                                                    <option disabled selected="selected">Pilih Roles</option>
+                                                    <option value="admin">Admin</option>
+                                                    <option value="pelanggan">Pelanggan</option>
+                                                </select>
+                                            @error('privilege')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-7 fv-row">
+                                            <label class="required form-label">Alamat</label>
+                                            <textarea name="alamat" id="alamat" class="form-control form-control-solid mb-3 mb-lg-0 @error('alamat') is-invalid @enderror">{{ $user->alamat }}</textarea>
+											@error('alamat')
+											    <span class="invalid-feedback" role="alert">
+													<strong>{{ $message }}</strong>
+												</span>
+											@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-10 fv-row">
+                                            <label class="required form-label">Whatsapp</label>
+                                            <input type="number" name="whatsapp" class="form-control mb-2 @error('whatsapp') is-invalid @enderror" value="{{ $user->whatsapp }}" placeholder="0812131415xx" />
+                                            @error('whatsapp')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+								<a href="{{ url('admin/users') }}" class="btn btn-secondary me-5">Cancel</a>
+								<button type="submit" class="btn btn-primary">
+									<span class="indicator-label">Save Changes</span>
+								</button>
 							</div>
+			          </div>								
+            		</form>							            
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
     
 @endsection
