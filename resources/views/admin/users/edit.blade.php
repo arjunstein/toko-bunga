@@ -43,8 +43,8 @@
                                                 <select class="form-select form-select-solid @error('privilege') is-invalid @enderror" name="privilege" data-control="select2" data-hide-search="true" data-placeholder="Select a layout">
                                                     <option></option>
                                                     <option disabled selected="selected">Pilih Roles</option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="pelanggan">Pelanggan</option>
+                                                    <option value="admin"{{ $user->privilege === 'admin' ? 'selected' : '' }}>Admin</option>
+                                                    <option value="pelanggan"{{ $user->privilege === 'pelanggan' ? 'selected' : '' }}>Pelanggan</option>
                                                 </select>
                                             @error('privilege')
                                                 <span class="invalid-feedback" role="alert">

@@ -4,19 +4,19 @@
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
 								<span class="text-gray-800 fw-bold me-1">{{ date('Y') }} ©</span>
-								<a href="https://otimflorist.com" target="_blank" class="text-gray-800 text-hover-primary">Otim FLorist</a>
+								<a href="https://otimflorist.com" target="_blank" class="text-gray-800 text-hover-primary">Otim Florist</a>
 							</div>
 							<!--end::Copyright-->
 							<!--begin::Menu-->
 							<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
 								<li class="menu-item">
-									<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">Facebook</a>
+									<a href="https://fb.com" target="_blank" class="menu-link px-2">Facebook</a>
 								</li>
 								<li class="menu-item">
-									<a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Instagram</a>
+									<a href="https://instagram.com/otimflorist7/" target="_blank" class="menu-link px-2">Instagram</a>
 								</li>
 								<li class="menu-item">
-									<a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Whatsapp</a>
+									<a href="https://wa.me/6281808881477/" target="_blank" class="menu-link px-2">Whatsapp</a>
 								</li>
 							</ul>
 							<!--end::Menu-->
