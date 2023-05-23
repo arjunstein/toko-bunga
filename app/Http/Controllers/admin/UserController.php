@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Kelola user',
-            'user' => User::orderBy('id','asc')->get(),
+            'user' => User::orderBy('id', 'asc')->get(),
         ];
 
         return view('admin/users/index', $data);
@@ -31,10 +31,10 @@ class UserController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah user'
+            'title' => 'Tambah user',
         ];
 
-        return view('admin/users/create',$data);
+        return view('admin/users/create', $data);
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required', 'string', 'max:50',
+            'name' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:users',
             // 'password' => 'required', 'string', 'min:8', 'confirmed',
             'whatsapp' => 'required|string|unique:users',
@@ -54,7 +54,7 @@ class UserController extends Controller
             'alamat' => 'required|string|min:20|max:255',
         ]);
 
-        $user = new User;
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt('12345');
@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->alamat = $request->alamat;
         $user->save();
 
-        return redirect('admin/users')->with('sukses','User baru berhasil ditambahkan');
+        return redirect('admin/users')->with('sukses', 'User baru berhasil ditambahkan');
     }
 
     /**
@@ -121,7 +121,7 @@ class UserController extends Controller
 
         // dd($user);
 
-        return redirect('admin/users')->with('sukses','Data berhasil diperbarui');
+        return redirect('admin/users')->with('sukses', 'Data berhasil diperbarui');
     }
 
     /**
@@ -137,7 +137,6 @@ class UserController extends Controller
             $user->delete();
 
             return response()->json(['message' => 'User berhasil dihapus.']);
-
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data.'], 500);
         }

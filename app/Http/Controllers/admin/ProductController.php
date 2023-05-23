@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,6 +17,7 @@ class ProductController extends Controller
     {
         $data = [
             'title' => 'List Produk',
+            'products' => Product::orderBy('id','asc')->get(),
         ];
 
         return view('admin/products/index', $data);
@@ -28,7 +30,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Tambah Produk',
+        ];
+        
+        return view('admin/products/create', $data);
     }
 
     /**
@@ -61,7 +67,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Edit Produk',
+        ];
+        $data['product'] = Product::find($id);
+        return view('admin/products/edit', $data);
     }
 
     /**

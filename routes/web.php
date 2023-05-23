@@ -3,7 +3,6 @@
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\UserController;
-use App\Http\Livewire\Admin\Users\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +20,7 @@ Route::get('/', function () {
     return redirect('dashboard');
 });
 
-Route::group(['middleware'=>['auth']], function(){
-
+Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [App\Http\Controllers\admin\DashboardController::class, 'index']);
 
     // Kelola user
@@ -39,7 +37,7 @@ Route::group(['middleware'=>['auth']], function(){
 
 Auth::routes();
 
-Route::get('logout', function (){
+Route::get('logout', function () {
     \Auth::logout();
     return redirect('login');
 });
