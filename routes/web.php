@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\TokoController;
 use App\Http\Controllers\admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
     // Kelola Produk
     Route::resource('/admin/products', ProductController::class);
 
-    // Route::get('admin/users', Index::class); => livewire route
+    // Kelola Toko
+    Route::resource('/toko', TokoController::class);
 });
 
 Auth::routes();
