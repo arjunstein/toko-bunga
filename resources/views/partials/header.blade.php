@@ -872,7 +872,7 @@
 
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a onclick="confirmLogout()" class="menu-link px-5">Sign Out</a>
+                            <a onclick="confirmLogout()" class="menu-link px-5">Logout</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu separator-->
