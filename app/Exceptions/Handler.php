@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -47,4 +49,19 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+{
+    // Mengatasi ModelNotFoundException
+    if ($exception instanceof ModelNotFoundException) {
+        return redirect('dashboard'); // Ubah 'dashboard' dengan nama route Anda
+    }
+
+    // Mengatasi NotFoundHttpException
+    if ($exception instanceof NotFoundHttpException) {
+        return redirect('dashboard'); // Ubah 'dashboard' dengan nama route Anda
+    }
+
+    return parent::render($request, $exception);
+}
 }
