@@ -280,7 +280,7 @@
 
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a onclick="confirmLogout()" class="menu-link px-5">Logout</a>
+                            <a data-url="{{ url('logout') }}" class="menu-link px-5 btn-logout">Logout</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu separator-->

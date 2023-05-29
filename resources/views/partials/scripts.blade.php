@@ -20,7 +20,7 @@
 <script src="{{ asset('assets/js/custom/apps/user-management/users/list/table.js') }}"></script>
 <script src="{{ asset('assets/js/custom/apps/user-management/users/list/export-users.js') }}"></script>
 <script src="{{ asset('assets/js/custom/apps/user-management/users/list/add.js') }}"></script>
-<script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script> --}}
+<script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
 <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
 
 {{-- produk --}}
@@ -60,22 +60,22 @@
     }
 
     // Logout konfirmasi
-    function confirmLogout() {
-        Swal.fire({
-            title: 'Konfirmasi Logout',
-            text: 'Anda yakin ingin logout dari situs ini?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: 'red',
-            confirmButtonText: 'Ya, logout',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Tambahkan URL logout Anda di bawah ini
-                window.location.href = '/logout';
-            }
-        });
-    }
+    // function confirmLogout() {
+    //     Swal.fire({
+    //         title: 'Konfirmasi Logout',
+    //         text: 'Anda yakin ingin logout dari situs ini?',
+    //         icon: 'question',
+    //         showCancelButton: true,
+    //         confirmButtonColor: 'red',
+    //         confirmButtonText: 'Ya, logout',
+    //         cancelButtonText: 'Batal'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             // Tambahkan URL logout Anda di bawah ini
+    //             window.location.href = '/logout';
+    //         }
+    //     });
+    // }
 
     // Hapus kategori
     $(document).ready(function() {
@@ -168,6 +168,56 @@
                             Swal.fire({
                                 title: 'Error',
                                 text: 'Terjadi kesalahan saat menghapus data user.',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    //logout konfirmasi
+    $(document).ready(function() {
+        $('.btn-logout').click(function(e) {
+            e.preventDefault();
+            var logoutUrl = $(this).attr('data-url');
+
+            Swal.fire({
+                title: 'Konfirmasi Logout',
+                text: 'Anda yakin ingin logout?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: 'red',
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika tombol "Hapus" diklik
+                    $.ajax({
+                        url: logoutUrl,
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: 'Berhasil Logout',
+                                icon: 'success'
+                            }).then((result) => {
+                                // Tindakan setelah penghapusan berhasil
+                                if (result.isConfirmed) {
+                                    // Lakukan pengalihan halaman
+                                    window.location.href =
+                                        "{{ url('login') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Gagal logout',
                                 icon: 'error'
                             });
                         }

@@ -26,7 +26,7 @@
                         <!--begin::Row-->
                         <div class="row g-10">
                             @foreach ($products as $prod)
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <!--begin::Hot sales post-->
                                     <div class="card-xl-stretch ms-md-6">
                                         <!--begin::Overlay-->
@@ -48,10 +48,11 @@
                                         <div class="mt-5">
                                             <!--begin::Title-->
                                             <a href="#"
-                                                class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">{{ $prod->category->categoryName }}</a>
+                                                class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">{{ $prod->namaProduk }}</a>
                                             <!--end::Title-->
                                             <!--begin::Text-->
-                                            <div class="fw-bold fs-5 text-gray-600 text-dark mt-3">{{ $prod->deskripsi }}
+                                            <div class="fw-bold fs-5 text-gray-600 text-dark mt-3">
+                                                {{ $prod->category->categoryName }}
                                             </div>
                                             <!--end::Text-->
                                             <!--begin::Text-->

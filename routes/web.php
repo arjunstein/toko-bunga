@@ -39,9 +39,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 Auth::routes();
 
-Route::get('logout', function () {
-    \Auth::logout();
-    return redirect('login');
+Route::post('logout', function(){
+	\Auth::logout();
+	return redirect('login');
+});
+Route::get('logout', function(){
+	return redirect('/dashboard');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
