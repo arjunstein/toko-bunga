@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -32,8 +33,9 @@ class ProductController extends Controller
     {
         $data = [
             'title' => 'Tambah Produk',
+
         ];
-        
+
         return view('admin/products/create', $data);
     }
 
@@ -69,8 +71,9 @@ class ProductController extends Controller
     {
         $data = [
             'title' => 'Edit Produk',
+            'category' => Category::orderBy('id','asc')->get(),
+            'product' => Product::findOrFail($id),
         ];
-        $data['product'] = Product::find($id);
         return view('admin/products/edit', $data);
     }
 
@@ -83,7 +86,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'namaProduk' => 'required|alphabet|min:5|max:50',
+            'categoryId'=> 'required',
+            'slug' => 'required',
+            'harga' => 'required',
+            'deskripsi' => 'required|text|min:10|max:100',
+            'gambar' => 'required',
+        ]);
     }
 
     /**
