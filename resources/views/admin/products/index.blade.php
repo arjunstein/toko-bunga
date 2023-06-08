@@ -121,7 +121,7 @@
                                                 </svg>
                                             </span>
                                         </a>
-                                        <button class="btn-icon btn-xs btn btn-delete-user btn-danger"
+                                        <button class="btn-icon btn-xs btn btn-delete-product btn-danger"
                                             data-url="{{ url('admin/products/' . $product->id) }}" data-bs-toggle="tooltip"
                                             title="Hapus produk">
                                             <span class="svg-icon svg-icon-2">

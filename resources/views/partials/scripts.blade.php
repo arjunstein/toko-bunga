@@ -59,24 +59,6 @@
         swal.fire("Question", pesan, "question");
     }
 
-    // Logout konfirmasi
-    // function confirmLogout() {
-    //     Swal.fire({
-    //         title: 'Konfirmasi Logout',
-    //         text: 'Anda yakin ingin logout dari situs ini?',
-    //         icon: 'question',
-    //         showCancelButton: true,
-    //         confirmButtonColor: 'red',
-    //         confirmButtonText: 'Ya, logout',
-    //         cancelButtonText: 'Batal'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             // Tambahkan URL logout Anda di bawah ini
-    //             window.location.href = '/logout';
-    //         }
-    //     });
-    // }
-
     // Hapus kategori
     $(document).ready(function() {
         $('.btn-delete').click(function(e) {
@@ -127,6 +109,55 @@
         });
     });
 
+    // Hapus produk
+    $(document).ready(function() {
+        $('.btn-delete-product').click(function(e) {
+            e.preventDefault();
+            var deleteUrl = $(this).attr('data-url');
+
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: 'Anda yakin ingin menghapus produk ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: 'red',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika tombol "Hapus" diklik
+                    $.ajax({
+                        url: deleteUrl,
+                        type: 'DELETE',
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: 'Produk berhasil dihapus.',
+                                icon: 'success'
+                            }).then((result) => {
+                                // Tindakan setelah penghapusan berhasil
+                                if (result.isConfirmed) {
+                                    // Lakukan pengalihan halaman
+                                    window.location.href =
+                                        "{{ url('admin/products') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat menghapus data.',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
     // Hapus user
     $(document).ready(function() {
         $('.btn-delete-user').click(function(e) {
