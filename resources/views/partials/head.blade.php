@@ -1,28 +1,30 @@
-<base href="../">
-<title>{{ $title }}</title>
-<meta charset="utf-8" />
-<meta name="description"
-    content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-<meta name="keywords"
-    content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:locale" content="en_US" />
-<meta property="og:type" content="article" />
-<meta property="og:title"
-    content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-<meta property="og:url" content="https://keenthemes.com/metronic" />
-<meta property="og:site_name" content="Keenthemes | Metronic" />
-<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-<link rel="shortcut icon" href="{{ asset('assets/media/logos/icon.webp') }}" />
-<!--begin::Fonts-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-<!--end::Fonts-->
-<!--begin::Page Vendor Stylesheets(used by this page)-->
-<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet"
-    type="text/css" />
-<!--end::Page Vendor Stylesheets-->
-<!--begin::Global Stylesheets Bundle(used by all pages)-->
-<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-<!--end::Global Stylesheets Bundle-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
+<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+<link rel="icon" href="../assets/img/icon.ico" type="image/x-icon" />
+
+<!-- Fonts and icons -->
+<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+<script>
+    WebFont.load({
+        google: {
+            "families": ["Lato:300,400,700,900"]
+        },
+        custom: {
+            "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands",
+                "simple-line-icons"
+            ],
+            urls: ['../assets/css/fonts.min.css']
+        },
+        active: function() {
+            sessionStorage.fonts = true;
+        }
+    });
+</script>
+
+<!-- CSS Files -->
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/css/atlantis.min.css">
+
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link rel="stylesheet" href="../assets/css/demo.css">

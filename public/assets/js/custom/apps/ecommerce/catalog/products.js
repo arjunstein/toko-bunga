@@ -57,7 +57,7 @@ var KTAppEcommerceProducts = (function () {
                 ((e = $(t).DataTable({
                     info: !1,
                     order: [],
-                    pageLength: 20,
+                    pageLength: 10,
                     columnDefs: [
                         { orderable: !1, targets: 0 },
                         { orderable: !1, targets: 7 },
