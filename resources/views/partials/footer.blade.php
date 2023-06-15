@@ -19,7 +19,6 @@
         </ul>
     </nav>
     <div class="copyright ml-auto">
-        2018, made with <i class="fa fa-heart heart text-danger"></i> by <a
-            href="https://www.themekita.com">ThemeKita</a>
+        {{ date('Y') }} <a href="https://instagram.com/otimfloris7">Otim Florist</a>
     </div>
 </div>
