@@ -1,44 +1,44 @@
 <!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="{{ asset('../../assets/js/core/jquery.3.2.1.min.js') }}"></script>
+<script src="{{ asset('../../assets/js/core/popper.min.js') }}"></script>
+<script src="{{ asset('../../assets/js/core/bootstrap.min.js') }}"></script>
 
 <!-- jQuery UI -->
-<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
 
 <!-- jQuery Scrollbar -->
-<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
 
 <!-- Chart JS -->
-<script src="../assets/js/plugin/chart.js/chart.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/chart.js/chart.min.js') }}"></script>
 
 <!-- jQuery Sparkline -->
-<script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
 
 <!-- Chart Circle -->
-<script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/chart-circle/circles.min.js') }}"></script>
 
 <!-- Datatables -->
-<script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/datatables/datatables.min.js') }}"></script>
 
 <!-- Bootstrap Notify -->
-<script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
 <!-- jQuery Vector Maps -->
-<script src="../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-<script src="../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+<script src="{{ asset('../../assets/js/plugin/jqvmap/jquery.vmap.min.js') }}"></script>
+<script src="{{ asset('../../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js') }}"></script>
 
 <!-- Sweet Alert -->
-<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+<script src="{{ asset('../../assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 
 <!-- Atlantis JS -->
-<script src="../assets/js/atlantis.min.js"></script>
+<script src="{{ asset('../../assets/js/atlantis.min.js') }}"></script>
 
 <!-- Atlantis DEMO methods, don't include it in your project! -->
-<script src="../assets/js/setting-demo.js"></script>
-<script src="../assets/js/demo.js"></script>
+<script src="{{ asset('../../assets/js/setting-demo.js') }}"></script>
+<script src="{{ asset('../../assets/js/demo.js') }}"></script>
 <script>
     Circles.create({
         id: 'circles-1',
@@ -156,227 +156,79 @@
         var pesan = "{{ Session::get('warning') }}"
         swal.fire("Warning", pesan, "warning");
     }
-    var info = "{{ Session::has('question') }}";
-    if (info) {
+    var question = "{{ Session::has('question') }}";
+    if (question) {
         var pesan = "{{ Session::get('question') }}"
         swal.fire("Question", pesan, "question");
     }
 
-    // Hapus kategori
+    // Datatable user
     $(document).ready(function() {
-        $('.btn-delete').click(function(e) {
-            e.preventDefault();
-            var deleteUrl = $(this).attr('data-url');
-
-            Swal.fire({
-                title: 'Konfirmasi Hapus',
-                text: 'Anda yakin ingin menghapus kategori ini?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: 'red',
-                confirmButtonText: 'Ya, Hapus',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Jika tombol "Hapus" diklik
-                    $.ajax({
-                        url: deleteUrl,
-                        type: 'DELETE',
-                        data: {
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Sukses',
-                                text: 'Kategori berhasil dihapus.',
-                                icon: 'success'
-                            }).then((result) => {
-                                // Tindakan setelah penghapusan berhasil
-                                if (result.isConfirmed) {
-                                    // Lakukan pengalihan halaman
-                                    window.location.href =
-                                        "{{ url('admin/categories') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
-                                }
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Terjadi kesalahan saat menghapus data.',
-                                icon: 'error'
-                            });
-                        }
-                    });
-                }
-            });
-        });
-    });
-
-    // datatable users
-    $("#kt_datatable_example_5").DataTable({
-        "language": {
-            "lengthMenu": "Show _MENU_",
-        },
-        "dom": "<'row'" +
-            "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
-            ">" +
-
-            "<'table-responsive'tr>" +
-
-            "<'row'" +
-            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-            ">"
-    });
-
-    // Hapus produk
-    $(document).ready(function() {
-        $('.btn-delete-product').click(function(e) {
-            e.preventDefault();
-            var deleteUrl = $(this).attr('data-url');
-
-            Swal.fire({
-                title: 'Konfirmasi Hapus',
-                text: 'Anda yakin ingin menghapus produk ini?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: 'red',
-                confirmButtonText: 'Ya, Hapus',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Jika tombol "Hapus" diklik
-                    $.ajax({
-                        url: deleteUrl,
-                        type: 'DELETE',
-                        data: {
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Sukses',
-                                text: 'Produk berhasil dihapus.',
-                                icon: 'success'
-                            }).then((result) => {
-                                // Tindakan setelah penghapusan berhasil
-                                if (result.isConfirmed) {
-                                    // Lakukan pengalihan halaman
-                                    window.location.href =
-                                        "{{ url('admin/products') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
-                                }
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Terjadi kesalahan saat menghapus data.',
-                                icon: 'error'
-                            });
-                        }
-                    });
-                }
-            });
-        });
-    });
-
-    // Hapus user
-    $(document).ready(function() {
-        $('.btn-delete-user').click(function(e) {
-            e.preventDefault();
-            var deleteUrl = $(this).attr('data-url');
-
-            Swal.fire({
-                title: 'Konfirmasi Hapus',
-                text: 'Anda yakin ingin menghapus user ini?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: 'red',
-                confirmButtonText: 'Ya, Hapus',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Jika tombol "Hapus" diklik
-                    $.ajax({
-                        url: deleteUrl,
-                        type: 'DELETE',
-                        data: {
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Sukses',
-                                text: 'User berhasil dihapus.',
-                                icon: 'success'
-                            }).then((result) => {
-                                // Tindakan setelah penghapusan berhasil
-                                if (result.isConfirmed) {
-                                    // Lakukan pengalihan halaman
-                                    window.location.href =
-                                        "{{ url('admin/users') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
-                                }
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Terjadi kesalahan saat menghapus data user.',
-                                icon: 'error'
-                            });
-                        }
-                    });
-                }
-            });
-        });
+        $('#basic-datatables').DataTable({});
     });
 
     //logout konfirmasi
-    $(document).ready(function() {
-        $('.btn-logout').click(function(e) {
-            e.preventDefault();
-            var logoutUrl = $(this).attr('data-url');
+    $('#btn-logout').click(function(e) {
+        e.preventDefault();
+        var logoutUrl = $(this).data('url');
 
-            Swal.fire({
-                title: 'Konfirmasi Logout',
-                text: 'Anda yakin ingin logout?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: 'red',
-                confirmButtonText: 'Ya, Logout',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Jika tombol "Hapus" diklik
-                    $.ajax({
-                        url: logoutUrl,
-                        type: 'POST',
-                        data: {
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Sukses',
-                                text: 'Berhasil Logout',
-                                icon: 'success'
-                            }).then((result) => {
-                                // Tindakan setelah penghapusan berhasil
-                                if (result.isConfirmed) {
-                                    // Lakukan pengalihan halaman
-                                    window.location.href =
-                                        "{{ url('login') }}"; // Ganti dengan URL tujuan setelah penghapusan berhasil
-                                }
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Gagal logout',
-                                icon: 'error'
-                            });
-                        }
-                    });
+        swal({
+            title: 'Konfirmasi Logout',
+            text: 'Anda yakin ingin logout?',
+            icon: 'info',
+            buttons: {
+                confirm: {
+                    text: 'Ya, logout!',
+                    className: 'btn btn-danger'
+                },
+                cancel: {
+                    visible: true,
+                    className: 'btn btn-secondary'
                 }
-            });
+            }
+        }).then((logout) => {
+            if (logout) {
+                $.ajax({
+                    url: logoutUrl,
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        swal({
+                            title: 'Logout Berhasil',
+                            text: 'Anda telah berhasil logout',
+                            type: 'success',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            }
+                        }).then((result) => {
+                            // Tindakan setelah logout berhasil
+                            if (result) {
+                                // Lakukan pengalihan halaman
+                                window.location.href =
+                                    "{{ url('login') }}"; // Ganti dengan URL tujuan setelah logout berhasil
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        swal({
+                            title: 'Logout Gagal',
+                            text: 'Terjadi kesalahan saat melakukan logout',
+                            type: 'error',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-danger'
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                swal.close();
+            }
         });
     });
 </script>
