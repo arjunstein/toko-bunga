@@ -35,7 +35,7 @@
                                         <td>{{ $usr->privilege }}</td>
                                         <td>{{ $usr->email }}</td>
                                         <td>{{ $usr->whatsapp }}</td>
-                                        <td>{{ $usr->created_at }}</td>
+                                        <td>{{ $usr->created_at->format('d M Y') }}</td>
                                         <td>
                                             <p><a class="btn btn-success btn-xs"
                                                     href="{{ url('admin/users/' . $usr->id . '/edit') }}"><i

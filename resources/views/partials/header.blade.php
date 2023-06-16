@@ -243,7 +243,7 @@
                         <div class="dropdown-user-scroll scrollbar-outer">
                             <li>
                                 <div class="user-box">
-                                    <div class="avatar-lg"><img src="../../assets/img/profile.png"
+                                    <div class="avatar-lg"><img src="../../../assets/img/profile.png"
                                             alt="image profile" class="avatar-img rounded"></div>
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->name }}</h4>
