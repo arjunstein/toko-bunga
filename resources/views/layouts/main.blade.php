@@ -32,7 +32,11 @@
                     </div>
                 </div>
                 <div class="page-inner mt--5">
-                    @yield('content')
+                    <div class="row">
+
+                        @yield('content')
+
+                    </div>
                 </div>
             </div>
             <footer class="footer">
