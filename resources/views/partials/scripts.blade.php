@@ -231,4 +231,71 @@
             }
         });
     });
+
+    // Hapus user
+    $('.btn-delete').click(function(e) {
+        e.preventDefault();
+        var deleteUrl = $(this).data('url');
+        var itemId = $(this).data('id');
+
+        swal({
+            title: 'Konfirmasi Hapus',
+            text: 'Anda yakin ingin menghapus?',
+            icon: 'warning',
+            buttons: {
+                confirm: {
+                    text: 'Ya, hapus!',
+                    className: 'btn btn-danger'
+                },
+                cancel: {
+                    visible: true,
+                    className: 'btn btn-secondary'
+                }
+            }
+        }).then((hapus) => {
+            if (hapus) {
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": itemId
+                    },
+                    success: function(response) {
+                        swal({
+                            title: 'Hapus Berhasil',
+                            text: 'Data telah berhasil dihapus',
+                            icon: 'success',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            }
+                        }).then((result) => {
+                            // Tindakan setelah penghapusan berhasil
+                            if (result) {
+                                // Lakukan pengalihan halaman atau tindakan lainnya
+                                window.location.href =
+                                    "{{ url('admin/users') }}";
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        swal({
+                            title: 'Hapus Gagal',
+                            text: 'Terjadi kesalahan saat menghapus data',
+                            icon: 'error',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-danger'
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                swal.close();
+            }
+        });
+    });
 </script>
