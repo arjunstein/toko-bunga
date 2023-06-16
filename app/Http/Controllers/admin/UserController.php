@@ -30,11 +30,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data = [
-            'title' => 'Tambah user',
-        ];
+        // $data = [
+        //     'title' => 'Add user',
+        // ];
 
-        return view('admin/users/create', $data);
+        // return view('admin/users/create', $data);
     }
 
     /**
@@ -45,25 +45,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:50',
-            'email' => 'required|string|email|max:255|unique:users',
-            // 'password' => 'required', 'string', 'min:8', 'confirmed',
-            'whatsapp' => 'required|string|unique:users',
-            'privilege' => 'required',
-            'alamat' => 'required|string|min:20|max:255',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:50',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     // 'password' => 'required', 'string', 'min:8', 'confirmed',
+        //     'whatsapp' => 'required|string|unique:users',
+        //     'privilege' => 'required',
+        //     'alamat' => 'required|string|min:20|max:255',
+        // ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt('12345');
-        $user->whatsapp = $request->whatsapp;
-        $user->privilege = $request->privilege;
-        $user->alamat = $request->alamat;
-        $user->save();
+        // $user = new User();
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->password = bcrypt('12345');
+        // $user->whatsapp = $request->whatsapp;
+        // $user->privilege = $request->privilege;
+        // $user->alamat = $request->alamat;
+        // $user->save();
 
-        return redirect('admin/users')->with('sukses', 'User baru berhasil ditambahkan');
+        // return redirect('admin/users')->with('sukses', 'User baru berhasil ditambahkan');
     }
 
     /**
@@ -135,7 +135,7 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
             $user->delete();
-
+            // dd($user);
             return response()->json(['message' => 'User berhasil dihapus.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data.'], 500);

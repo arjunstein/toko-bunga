@@ -5,7 +5,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">List users</h4>
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">List user</h4>
+                        <a class="btn btn-success btn-sm btn-round ml-auto" href="#">
+                            <i class="far fa-file-pdf"></i>
+                            Export user
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -22,15 +28,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Developer</td>
-                                    <td>New York</td>
-                                    <td>61</td>
-                                    <td>2013/08/11</td>
-                                    <td>$98,540</td>
-                                    <td><a class="btn btn-primary btn-sm" href="">View</a></td>
-                                </tr>
+                                @foreach ($user as $e => $usr)
+                                    <tr>
+                                        <td>{{ $e + 1 }}</td>
+                                        <td>{{ $usr->name }}</td>
+                                        <td>{{ $usr->privilege }}</td>
+                                        <td>{{ $usr->email }}</td>
+                                        <td>{{ $usr->whatsapp }}</td>
+                                        <td>{{ $usr->created_at }}</td>
+                                        <td>
+                                            <p><a class="btn btn-success btn-xs"
+                                                    href="{{ url('admin/users/' . $usr->id . '/edit') }}"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-delete btn-xs"
+                                                    data-id="{{ $usr->id }}" id=""
+                                                    data-url="{{ url('admin/users/' . $usr->id) }}"><i
+                                                        class="fas fa-trash-alt"></i></button>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
