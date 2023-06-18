@@ -7,7 +7,8 @@ use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -35,7 +36,7 @@ class ProductController extends Controller
     {
         $data = [
             'title' => 'Tambah Produk',
-            'category' => Category::orderBy('id', 'asc')->get(),
+            'product' => product::orderBy('id', 'asc')->get(),
         ];
 
         return view('admin/products/create', $data);
@@ -118,10 +119,29 @@ class ProductController extends Controller
             'namaProduk' => 'required|min:5|max:50',
             'categoryId' => 'required',
             'slug' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|integer',
             'deskripsi' => 'required|text|min:10|max:100',
             'gambar' => 'required',
         ]);
+
+        if ($request->hasFile('gambar')) {
+
+            //upload new image
+           $gambar = $request->file('gambar');
+           $gambar->storeAs('public/products', $gambar->getClientOriginalName());
+
+            //delete old image
+            $alat = Product::findOrFail($id);
+            $path = storage_path('app/public/products/'.$alat->image);
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+
+
+
+        } else {
+
+        }
     }
 
     /**

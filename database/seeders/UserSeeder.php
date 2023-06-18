@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'privilege' => 'pelanggan',
-            'whatsapp' => fake()->phoneNumber(),
+            'whatsapp' => '08'.fake()->numberBetween(1000000000,999999999999),
             'alamat' => fake()->address(),
         ]);
         }

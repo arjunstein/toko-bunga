@@ -61,6 +61,36 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                    <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Navigation</h4>
+            <li class="nav-item">
+                <a href="/toko">
+                    <i class="fas fa-shopping-bag"></i>
+                    <p>Toko</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <p>Tentang kami</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <i class="fas fa-phone"></i>
+                    <p>Kontak kami</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <p>Testimoni</p>
+                </a>
+            </li>
+            </li>
         </ul>
     </div>
 </div>
