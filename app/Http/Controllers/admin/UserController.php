@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -102,12 +103,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $this->validate($request,[
             'name' => 'required|string|min:3|max:30',
             'email' => 'required|email',
             'whatsapp' => 'required|min:10|max:14',
-            'alamat' => 'required|string|min:20|max:255',
-            // 'password' => 'sometimes',
+            'alamat' => 'required|string|min:10|max:255',
+            'password' => 'nullable|string|min:5',
             'privilege' => 'required',
         ]);
 
@@ -120,8 +121,8 @@ class UserController extends Controller
         $user->update();
 
         // dd($user);
-
-        return redirect('admin/users')->with('sukses', 'Data berhasil diperbarui');
+        Session::flash('success', 'User berhasil diperbarui');
+        return redirect('admin/users');
     }
 
     /**

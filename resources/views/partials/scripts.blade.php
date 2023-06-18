@@ -135,33 +135,6 @@
 </script>
 <script src="{{ mix('js/app.js') }}"></script>
 <script>
-    var flash = "{{ Session::has('sukses') }}";
-    if (flash) {
-        var pesan = "{{ Session::get('sukses') }}"
-        swal.fire("Sukses", pesan, "success");
-    }
-
-    var gagal = "{{ Session::has('gagal') }}";
-    if (gagal) {
-        var pesan = "{{ Session::get('gagal') }}"
-        swal.fire("Error", pesan, "error");
-    }
-    var info = "{{ Session::has('info') }}";
-    if (info) {
-        var pesan = "{{ Session::get('info') }}"
-        swal.fire("Info", pesan, "info");
-    }
-    var info = "{{ Session::has('warning') }}";
-    if (info) {
-        var pesan = "{{ Session::get('warning') }}"
-        swal.fire("Warning", pesan, "warning");
-    }
-    var question = "{{ Session::has('question') }}";
-    if (question) {
-        var pesan = "{{ Session::get('question') }}"
-        swal.fire("Question", pesan, "question");
-    }
-
     // Datatable user
     $(document).ready(function() {
         $('#basic-datatables').DataTable({});
@@ -240,7 +213,7 @@
 
         swal({
             title: 'Konfirmasi Hapus',
-            text: 'Anda yakin ingin menghapus?',
+            text: 'Hapus user ini?',
             icon: 'warning',
             buttons: {
                 confirm: {
@@ -263,8 +236,8 @@
                     },
                     success: function(response) {
                         swal({
-                            title: 'Hapus Berhasil',
-                            text: 'Data telah berhasil dihapus',
+                            title: 'Sukses',
+                            text: 'User berhasil dihapus',
                             icon: 'success',
                             buttons: {
                                 confirm: {
@@ -282,7 +255,7 @@
                     },
                     error: function(xhr) {
                         swal({
-                            title: 'Hapus Gagal',
+                            title: 'Gagal',
                             text: 'Terjadi kesalahan saat menghapus data',
                             icon: 'error',
                             buttons: {
@@ -298,4 +271,83 @@
             }
         });
     });
+
+    // Hapus category
+    $('.btn-delete-category').click(function(e) {
+        e.preventDefault();
+        var deleteUrl = $(this).data('url');
+        var categoryId = $(this).data('id');
+
+        swal({
+            title: 'Konfirmasi Hapus',
+            text: 'Hapus category ini?',
+            icon: 'warning',
+            buttons: {
+                confirm: {
+                    text: 'Ya, hapus!',
+                    className: 'btn btn-danger'
+                },
+                cancel: {
+                    visible: true,
+                    className: 'btn btn-secondary'
+                }
+            }
+        }).then((hapus) => {
+            if (hapus) {
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": categoryId
+                    },
+                    success: function(response) {
+                        swal({
+                            title: 'Sukses',
+                            text: 'Category berhasil dihapus',
+                            icon: 'success',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            }
+                        }).then((result) => {
+                            // Tindakan setelah penghapusan berhasil
+                            if (result) {
+                                // Lakukan pengalihan halaman atau tindakan lainnya
+                                window.location.href =
+                                    "{{ url('admin/categories') }}";
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        swal({
+                            title: 'Gagal',
+                            text: 'Tidak dapat dihapus langsung, karena memiliki product',
+                            icon: 'error',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-danger'
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                swal.close();
+            }
+        });
+    });
+
+    // alert success
+    @if (Session::has('success'))
+        swal("Sukses", "{{ Session::get('success') }}", {
+            icon: "success",
+            buttons: {
+                confirm: {
+                    className: 'btn btn-success'
+                }
+            },
+        });
+    @endif
 </script>

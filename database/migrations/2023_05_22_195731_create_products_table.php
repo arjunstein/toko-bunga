@@ -17,14 +17,14 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('categoryId')->unsigned();
-            $table->foreign('categoryId')->references('id')->on('categories')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('categoryId')->references('id')->on('categories')->onDelete('restrict')->onUpdate('cascade');
             $table->string('namaProduk');
             $table->string('slug')->unique();
             $table->string('gambar');
             $table->string('deskripsi')->nullable();
             $table->integer('harga');
             $table->timestamps();
-            
+
         });
     }
 

@@ -35,7 +35,7 @@ class CategoryController extends Controller
             'title' => 'Tambah Kategori Bunga',
         ];
 
-        return view('admin/categories/create',$data);   
+        return view('admin/categories/create',$data);
     }
 
     /**
@@ -84,8 +84,8 @@ class CategoryController extends Controller
             'title' => 'Edit Kategori Bunga',
             'category' => $category
             ];
-      
-            return view('admin/categories/edit',$data);          
+
+            return view('admin/categories/edit',$data);
     }
 
     /**
@@ -98,7 +98,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'categoryName' => 'required|string|max:30|min:3',
+            'categoryName' => 'required|string|max:50|min:3',
             ]);
 
             $category = Category::findOrFail($id);
@@ -108,7 +108,7 @@ class CategoryController extends Controller
 
             // dd($category);
 
-            return redirect('admin/categories')->with('sukses','Kategori berhasil diperbarui');
+            return redirect('admin/categories')->with('success','Kategori berhasil diperbarui');
     }
 
     /**
@@ -122,7 +122,7 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
             $category->delete();
-
+            // dd($category);
             return response()->json(['message' => 'Data berhasil dihapus.']);
 
         } catch (\Exception $e) {

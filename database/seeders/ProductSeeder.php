@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
             $categoryId = $faker->randomElement($categoryIds);
             Product::create([
                 'categoryId' => $categoryId,
-                'namaProduk' => $faker->word,
+                'namaProduk' => 'Bunga '.$faker->word,
                 'slug' => $faker->unique()->slug,
                 'gambar' => $faker->imageUrl(),
                 'deskripsi' => $faker->paragraph(1),
