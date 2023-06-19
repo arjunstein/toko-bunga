@@ -15,7 +15,7 @@ git clone git@github.com:arjunstein/toko-bunga.git
 
 2. Navigate to the project directory:
 ```bash
-cd laravel-mikrotik-api
+cd toko-bunga
 ```
 3. Install the composer packages, run the following command :
 ```bash
