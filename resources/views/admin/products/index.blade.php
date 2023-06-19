@@ -6,9 +6,8 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <h4 class="card-title">List products</h4>
-                    <a class="btn btn-success btn-sm btn-round ml-auto" href="#">
-                        <i class="far fa-file-pdf"></i>
-                        Add product
+                    <a class="btn btn-primary btn-md btn-round ml-auto" href="{{ url('admin/products/create') }}">
+                        <i class="fa fa-plus"> Add product</i>
                     </a>
                 </div>
             </div>
@@ -30,7 +29,8 @@
                             @foreach ($products as $e => $prod)
                                 <tr>
                                     <td>{{ $e + 1 }}</td>
-                                    <td><img src="{{ $prod->gambar }}" alt="..." height="40px"></td>
+                                    <td><img src="{{ asset('storage/products/' . $prod->gambar) }}" alt="..."
+                                            height="40px"></td>
                                     <td>{{ $prod->namaProduk }}</td>
                                     <td>{{ $prod->category->categoryName }}</td>
                                     <td>Rp. {{ number_format($prod->harga) }}</td>
@@ -39,7 +39,8 @@
                                         <p><a class="btn btn-success btn-xs"
                                                 href="{{ url('admin/products/' . $prod->id . '/edit') }}"><i
                                                     class="fas fa-edit"></i></a>
-                                            <button class="btn btn-danger btn-delete btn-xs" data-id="{{ $prod->id }}"
+                                            <button class="btn btn-danger btn-delete-product btn-xs"
+                                                data-id="{{ $prod->id }}"
                                                 data-url="{{ url('admin/products/' . $prod->id) }}"><i
                                                     class="fas fa-trash-alt"></i></button>
                                         </p>

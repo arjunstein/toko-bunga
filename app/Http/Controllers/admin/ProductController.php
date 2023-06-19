@@ -37,6 +37,7 @@ class ProductController extends Controller
         $data = [
             'title' => 'Tambah Produk',
             'product' => product::orderBy('id', 'asc')->get(),
+            'category' => Category::orderBy('id','asc')->get(),
         ];
 
         return view('admin/products/create', $data);
@@ -60,11 +61,7 @@ class ProductController extends Controller
         ]);
 
         $gambar = $request->file('gambar');
-        $gambarPath = $gambar->storeAs('public/products', $gambar->hashName());
-
-        // Konversi gambar ke WebP
-        // $image = Image::make(public_path('storage/' . $gambarPath))->encode('webp', 75);
-        // $image->save();
+        $gambar->storeAs('public/products', $gambar->hashName());
 
         $product = new Product();
         $product->namaProduk = $request->namaProduk;
@@ -76,7 +73,7 @@ class ProductController extends Controller
         $product->save();
 
         // dd($product);
-        return redirect('admin/products')->with('sukses', 'Produk berhasil ditambahkan');
+        return redirect('admin/products')->with('success', 'Produk berhasil ditambahkan');
     }
 
     /**
