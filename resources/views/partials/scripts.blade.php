@@ -339,6 +339,73 @@
         });
     });
 
+    // Hapus product
+    $('.btn-delete-product').click(function(e) {
+        e.preventDefault();
+        var deleteUrl = $(this).data('url');
+        var id = $(this).data('id');
+
+        swal({
+            title: 'Konfirmasi Hapus',
+            text: 'Hapus product ini?',
+            icon: 'warning',
+            buttons: {
+                confirm: {
+                    text: 'Ya, hapus!',
+                    className: 'btn btn-danger'
+                },
+                cancel: {
+                    visible: true,
+                    className: 'btn btn-secondary'
+                }
+            }
+        }).then((hapus) => {
+            if (hapus) {
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id
+                    },
+                    success: function(response) {
+                        swal({
+                            title: 'Sukses',
+                            text: 'Product berhasil dihapus',
+                            icon: 'success',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            }
+                        }).then((result) => {
+                            // Tindakan setelah penghapusan berhasil
+                            if (result) {
+                                // Lakukan pengalihan halaman atau tindakan lainnya
+                                window.location.href =
+                                    "{{ url('admin/products') }}";
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        swal({
+                            title: 'Gagal',
+                            text: 'Tidak dapat dihapus langsung, karena memiliki product',
+                            icon: 'error',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-danger'
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                swal.close();
+            }
+        });
+    });
+
     // alert success
     @if (Session::has('success'))
         swal("Sukses", "{{ Session::get('success') }}", {
