@@ -10,7 +10,7 @@ Here are the installation steps for this project:
 
 
 ```bash
-git clone git@github.com:Mazmiiskndr/laravel-mikrotik-api.git
+git clone git@github.com:arjunstein/toko-bunga.git
 ```
 
 2. Navigate to the project directory:
