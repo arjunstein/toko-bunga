@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-action">
                         <button type="submit" class="btn btn-success">Update</button>
-                        <a href="/admin/users" class="btn btn-danger">Cancel</a>
+                        <a href="/admin/categories" class="btn btn-danger">Cancel</a>
                     </div>
                 </form>
             </div>

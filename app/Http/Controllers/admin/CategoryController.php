@@ -47,7 +47,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'categoryName' => 'required|string|max:30|min:3',
+            'categoryName' => 'required|string|max:30|min:10',
             ]);
 
             $category = new Category;
@@ -57,7 +57,7 @@ class CategoryController extends Controller
 
             // dd($category);
 
-            return redirect('admin/categories')->with('sukses','Kategori berhasil ditambahkan');
+            return redirect('admin/categories')->with('success','Kategori berhasil ditambahkan');
     }
 
     /**
