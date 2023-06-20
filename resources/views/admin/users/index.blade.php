@@ -17,7 +17,7 @@
                     <table id="basic-datatables" class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th width="10px">No</th>
                                 <th>Name</th>
                                 <th>Role</th>
                                 <th>Email</th>
@@ -34,11 +34,11 @@
                                     <td>{{ $usr->privilege }}</td>
                                     <td>{{ $usr->email }}</td>
                                     <td>{{ $usr->whatsapp }}</td>
-                                    <td>{{ $usr->created_at->format('d M Y H:i') }}</td>
+                                    <td>{{ $usr->created_at->format('d M Y') }}</td>
                                     <td>
                                         <p><a class="btn btn-success btn-xs"
                                                 href="{{ url('admin/users/' . $usr->id . '/edit') }}"><i
-                                                    class="fas fa-edit"></i></a>
+                                                    class="fa fa-edit"></i></a>
                                             <button class="btn btn-danger btn-delete btn-xs" data-id="{{ $usr->id }}"
                                                 data-url="{{ url('admin/users/' . $usr->id) }}"><i
                                                     class="fas fa-trash-alt"></i></button>

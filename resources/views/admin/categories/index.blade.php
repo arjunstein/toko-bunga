@@ -6,7 +6,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <h4 class="card-title">List categories</h4>
-                    <a class="btn btn-success btn-sm btn-round ml-auto" href="#">
+                    <a class="btn btn-success btn-sm btn-round ml-auto" href="{{ url('admin/categories/create') }}">
                         <i class="fas fa-plus"></i>
                         Add category
                     </a>
