@@ -7,7 +7,7 @@
                 <div class="card-title">Form Edit User</div>
             </div>
             <div class="card-body">
-                <form action="{{ url('admin/products/' . $product->id) }}" method="POST">
+                <form action="{{ url('admin/products/' . $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">

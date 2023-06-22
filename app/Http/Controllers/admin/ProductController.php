@@ -37,7 +37,7 @@ class ProductController extends Controller
         $data = [
             'title' => 'Tambah Produk',
             'product' => product::orderBy('id', 'asc')->get(),
-            'category' => Category::orderBy('id','asc')->get(),
+            'category' => Category::orderBy('id', 'asc')->get(),
         ];
 
         return view('admin/products/create', $data);
@@ -115,30 +115,46 @@ class ProductController extends Controller
         $request->validate([
             'namaProduk' => 'required|min:5|max:50',
             'categoryId' => 'required',
-            'slug' => 'required',
+            'slug' => 'nullable',
             'harga' => 'required|integer',
-            'deskripsi' => 'required|text|min:10|max:100',
-            'gambar' => 'required',
+            'deskripsi' => 'required|string|min:10|max:100',
+            'gambar' => 'image|mimes:png,jpg,jpeg|max:1024',
         ]);
 
         if ($request->hasFile('gambar')) {
-
             //upload new image
-           $gambar = $request->file('gambar');
-           $gambar->storeAs('public/products', $gambar->getClientOriginalName());
+            $gambar = $request->file('gambar');
+            $gambar->storeAs('public/products', $gambar->hashName());
 
             //delete old image
-            $alat = Product::findOrFail($id);
-            $path = storage_path('app/public/products/'.$alat->image);
+            $product = Product::findOrFail($id);
+            $path = storage_path('app/public/products/' . $product->gambar);
             if (File::exists($path)) {
                 File::delete($path);
             }
 
-
+            // update product with new image
+            $product = Product::findOrFail($id);
+            $product->namaProduk = $request->namaProduk;
+            $product->slug = Str::slug($request->input('namaProduk'));
+            $product->categoryId = $request->categoryId;
+            $product->harga = $request->harga;
+            $product->gambar = $gambar->hashName();
+            $product->deskripsi = $request->deskripsi;
+            $product->update();
 
         } else {
-
+            // keep old image
+            $product = Product::findOrFail($id);
+            $product->namaProduk = $request->namaProduk;
+            $product->slug = Str::slug($request->input('namaProduk'));
+            $product->categoryId = $request->categoryId;
+            $product->harga = $request->harga;
+            $product->deskripsi = $request->deskripsi;
+            $product->update();
         }
+
+        return redirect('admin/products')->with('success','Product berhasil diperbarui');
     }
 
     /**
@@ -154,7 +170,6 @@ class ProductController extends Controller
             $product->delete();
 
             return response()->json(['message' => 'Produk berhasil dihapus.']);
-
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data.'], 500);
         }
