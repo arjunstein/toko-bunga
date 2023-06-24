@@ -134,6 +134,7 @@
     });
 </script>
 <script src="{{ mix('js/app.js') }}"></script>
+
 <script>
     // Datatable user
     $(document).ready(function() {
