@@ -15,41 +15,42 @@
                     <img src="{{ asset('assets/login/images/img-01.png') }}" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+                <form class="login100-form" method="POST" action="{{ route('login') }}">
                     <span class="login100-form-title">
                         Login Akun
                     </span>
+                    <center>
+                        <p>
+                            @if ($errors->has('whatsapp'))
+                                <span class="text-danger">
+                                    <strong>{{ $errors->first('whatsapp') }}</strong>
+                                </span>
+                            @endif
+                        </p>
+                        <p>
+                            @if ($errors->has('password'))
+                                <span class="text-danger">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                        </p>
+                    </center>
                     @csrf
-                    <div class="wrap-input100 validate-input">
-                        <input
-                            class="input100 @error('whatsapp')
-                                is-invalid
-                            @enderror"
-                            type="number" name="whatsapp" placeholder="Whatsapp">
+                    <div class="wrap-input100">
+                        <input class="input100" type="number" value="{{ old('whatsapp') }}" name="whatsapp"
+                            placeholder="Whatsapp">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
                         </span>
-                        <p>
-                            @error('whatsapp')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </p>
                     </div>
 
-                    <div class="wrap-input100 validate-input">
+                    <div class="wrap-input100">
                         <input class="input100" type="password" name="password" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
 
                     <div class="container-login100-form-btn">
