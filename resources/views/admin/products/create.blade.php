@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="card-action" style="text-align: right;">
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                         <a href="/admin/products" class="btn btn-danger">Cancel</a>
                     </div>
                 </form>

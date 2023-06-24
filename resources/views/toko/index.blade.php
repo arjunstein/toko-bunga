@@ -9,11 +9,14 @@
                         <img class="card-img-top" src="{{ asset('storage/products/' . $prod->gambar) }}" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-category text-info">
-                            <h5>{{ $prod->category->categoryName }}</h5>
+                                <b>
+                                    <h5>Rp. {{ number_format($prod->harga) }}</h5>
+                                </b>
                             <h4>{{ $prod->namaProduk }}</h4>
                             </p>
                             <p class="card-text">{{ Str::limit($prod->deskripsi, 10, ' ...') }}</p>
-                            <a href="#" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                            <a href="#" class="btn btn-primary btn-rounded btn-sm"><i class="fas fa-shopping-cart">
+                                    Beli</i></a>
                         </div>
                     </div>
                 </div>
