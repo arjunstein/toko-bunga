@@ -12,7 +12,7 @@
 
 
 <!-- Chart JS -->
-<script src="{{ asset('../../../assets/js/plugin/chart.js/chart.min.js') }}"></script>
+<script src="{{ asset('../../../assets/js/plugin/chart_js/chart.min.js') }}"></script>
 
 <!-- jQuery Sparkline -->
 <script src="{{ asset('../../../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
@@ -39,6 +39,7 @@
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="{{ asset('../../../assets/js/setting-demo.js') }}"></script>
 <script src="{{ asset('../../../assets/js/demo.js') }}"></script>
+
 <script>
     Circles.create({
         id: 'circles-1',
@@ -418,4 +419,82 @@
             },
         });
     @endif
+</script>
+<script>
+    var barChart = document.getElementById('barChart').getContext('2d'),
+        pieChart = document.getElementById('pieChart').getContext('2d');
+
+    var myBarChart = new Chart(barChart, {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "2023",
+                backgroundColor: 'rgb(23, 125, 255)',
+                borderColor: 'rgb(23, 125, 255)',
+                data: [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4],
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+    });
+
+    // Inisialisasi chart dengan plugin datalabels
+    var myPieChart = new Chart(pieChart, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [34, 12, 16, 11, 12, 12, 3],
+                backgroundColor: ["#1d7af3", "#f3545d", "#fdaf4b", "#34eb58", "#a834eb", "#deeb34",
+                    "#10091c"
+                ],
+                borderWidth: 0
+            }],
+            labels: ['Bunga Papan Dukacita', 'Bunga Papan Congratulations', 'Bunga Papan Happy Wedding',
+                'Bunga Standing', 'Bunga Meja', 'Hand Bouquet', 'Bunga Salib'
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom',
+                labels: {
+                    fontColor: 'rgb(154, 154, 154)',
+                    fontSize: 11,
+                    usePointStyle: true,
+                    padding: 20
+                }
+            },
+            plugins: {
+                datalabels: {
+                    color: 'white',
+                    font: {
+                        size: 14
+                    },
+                    formatter: function(value, context) {
+                        return context.chart.data.labels[context.dataIndex] + ': ' + value + '%';
+                    }
+                }
+            },
+            tooltips: false,
+            layout: {
+                padding: {
+                    left: 20,
+                    right: 20,
+                    top: 20,
+                    bottom: 20
+                }
+            }
+        }
+    });
 </script>
