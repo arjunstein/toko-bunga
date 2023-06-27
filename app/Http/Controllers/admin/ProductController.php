@@ -142,7 +142,6 @@ class ProductController extends Controller
             $product->gambar = $gambar->hashName();
             $product->deskripsi = $request->deskripsi;
             $product->update();
-
         } else {
             // keep old image
             $product = Product::findOrFail($id);
@@ -154,7 +153,7 @@ class ProductController extends Controller
             $product->update();
         }
 
-        return redirect('admin/products')->with('success','Product berhasil diperbarui');
+        return redirect('admin/products')->with('success', 'Product berhasil diperbarui');
     }
 
     /**
@@ -169,6 +168,11 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
             $product->delete();
 
+            //delete image in storage
+            $path = storage_path('app/public/products/' . $product->gambar);
+            if (File::exists($path)) {
+                File::delete($path);
+            }
             return response()->json(['message' => 'Produk berhasil dihapus.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data.'], 500);
