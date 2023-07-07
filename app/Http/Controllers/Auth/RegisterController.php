@@ -53,9 +53,12 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'whatsapp' => 'required|regex:/^\+[0-9]\d{1,14}$/',
-            'privilege' => 'required',
+            'whatsapp' => ['required','string'],
+            'privilege' => ['required'],
+            'alamat' => ['required'],
         ]);
+
+        // dd($data);
     }
 
     /**
@@ -69,9 +72,10 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'whatsapp' => $data['whatsapp'],
             'password' => Hash::make($data['password']),
             'privilege' => 'pelanggan',
-            'alamat' => 'Lengkapi alamat anda',
+            'alamat' => 'lengkapi',
         ]);
     }
 }
