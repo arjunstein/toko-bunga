@@ -73,7 +73,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#">
+                <a href="/about">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <p>Tentang kami</p>
                 </a>

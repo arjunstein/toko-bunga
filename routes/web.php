@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TokoController;
@@ -35,16 +36,19 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Kelola Toko
     Route::resource('/toko', TokoController::class);
+
+    // Kelola about us
+    Route::resource('/about', AboutController::class);
 });
 
 Auth::routes();
 
-Route::post('logout', function(){
-	\Auth::logout();
-	return redirect('login');
+Route::post('logout', function () {
+    \Auth::logout();
+    return redirect('login');
 });
-Route::get('logout', function(){
-	return redirect('/dashboard');
+Route::get('logout', function () {
+    return redirect('/dashboard');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
