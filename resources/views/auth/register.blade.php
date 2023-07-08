@@ -20,7 +20,6 @@
                         Daftar Akun
                     </span>
 
-
                     <div class="wrap-input100">
                         <input class="input100" type="text" value="{{ old('name') }}" name="name"
                             placeholder="Masukan Nama">
