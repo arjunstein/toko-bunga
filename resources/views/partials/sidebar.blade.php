@@ -79,7 +79,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#">
+                <a href="/contact-us">
                     <i class="fas fa-phone"></i>
                     <p>Kontak kami</p>
                 </a>
