@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TokoController;
 use App\Http\Controllers\admin\UserController;
@@ -39,6 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Kelola about us
     Route::resource('/about', AboutController::class);
+
+    // Kelola contact us
+    Route::resource('/contact-us', ContactController::class);
 });
 
 Auth::routes();
